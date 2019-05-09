@@ -1,0 +1,24 @@
+{
+  "name": "water-overflow",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "node_modules/.bin/mocha test/*.spec.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kinvinjin/water-overflow.git"
+  },
+  "author": "kinvinjin@gmail.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kinvinjin/water-overflow/issues"
+  },
+  "homepage": "https://github.com/kinvinjin/water-overflow#readme",
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^6.0.2"
+  }
+}
