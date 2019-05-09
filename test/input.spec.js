@@ -1,5 +1,5 @@
 const expect = require('chai').expect;
-const { processInput } = require('../src/input');
+const { processInput, processOutput } = require('../src/input');
 
 describe('input.js', function() {
     describe('processInput(callback)', function() {
@@ -8,6 +8,14 @@ describe('input.js', function() {
             setTimeout(()=> {
                 process.exit(0);
             }, 1000);
+        });
+    });
+    describe('processOutput(result)', function() {
+        it('should not throw error', function() {
+            expect(() => processOutput()).to.not.throw();
+        });
+        it('should not throw error', function() {
+            expect(() => processOutput(new Error())).to.not.throw();
         });
     });
 });

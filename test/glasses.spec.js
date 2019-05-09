@@ -2,8 +2,8 @@ const expect = require('chai').expect;
 const Glasses = require('../src/glasses');
 
 const testdata = {
-    input: 1, // 1L
-    output: 4, // 4 glasses of water
+    inputL: 1, // 1L
+    inputG: 4, // 4 glasses of water
     glasses: [{
       i: 0,
       j: 0,
@@ -39,25 +39,36 @@ const testdata = {
 describe('glasses.js', function() {
     describe('getInputNum(k)', function() {
         it('should return the input number of glasses water', function() {
-            const glasses = new Glasses(testdata.input);
-            expect(glasses.getInputNum(testdata.input)).to.equal(testdata.output);
-            expect(glasses.n).to.equal(testdata.output);
+            const glasses = new Glasses(testdata.inputL);
+            expect(glasses.getInputNum(testdata.inputL)).to.equal(testdata.inputG);
+            expect(glasses.n).to.equal(testdata.inputG);
         });
     });
     describe('calculate(r, c, n)', function() {
         it('should return the number of glass water for the glass with specific row and column', function() {
-            const glasses = new Glasses(testdata.input);
-            expect(glasses.getInputNum(testdata.input)).to.equal(testdata.output);
+            const glasses = new Glasses(testdata.inputL);
+            expect(glasses.getInputNum(testdata.inputL)).to.equal(testdata.inputG);
             testdata.glasses.forEach((item)=> {
-                expect(glasses.calculate(item.i, item.j, testdata.output)).to.equal(item.result);
+                expect(glasses.calculate(item.i, item.j, testdata.inputG)).to.equal(item.result);
             });
         });
     });
     describe('getWater(i, j)', function() {
         it('should return the amount of water (ml) for the specified glass', function() {
-            const glasses = new Glasses(testdata.input);
-            expect(glasses.getInputNum(testdata.input)).to.equal(testdata.output);
+            const glasses = new Glasses(testdata.inputL);
+            expect(glasses.getInputNum(testdata.inputL)).to.equal(testdata.inputG);
             expect(glasses.getWater(testdata.glasses[0].i, testdata.glasses[0].j)).to.equal(testdata.glasses[0].water);
+        });
+    });
+    describe('build(k, i, j)', function() {
+        it('should return the amount of water (ml) for the specified glass', function() {
+            expect(Glasses.build([testdata.inputL, testdata.glasses[0].i, testdata.glasses[0].j])).to.equal(testdata.glasses[0].water);
+        });
+        it('should return error if params are not 3', function() {
+            expect(Glasses.build([testdata.inputL, testdata.glasses[0].i])).to.be.an('error');
+        });
+        it('should return error if params are invalid', function() {
+            expect(Glasses.build([testdata.inputL, testdata.glasses[0].i, 'a'])).to.be.an('error');
         });
     });
 });
