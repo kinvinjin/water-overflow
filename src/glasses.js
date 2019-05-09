@@ -59,7 +59,8 @@ class Glasses {
     static build(params) {
         const [k, i, j] = params.map((n) => parseFloat(n));
         
-        if (params.length !== 3 || isNaN(k) || isNaN(i) || isNaN(j)) {
+        if (params.length !== 3 || isNaN(k) || isNaN(i) || isNaN(j) ||
+                k < 0 || i < 0 || j < 0) {
             return new Error();
         }
         

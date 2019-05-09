@@ -70,5 +70,8 @@ describe('glasses.js', function() {
         it('should return error if params are invalid', function() {
             expect(Glasses.build([testdata.inputL, testdata.glasses[0].i, 'a'])).to.be.an('error');
         });
+        it('should return error if params are not 3', function() {
+            expect(Glasses.build([-1, testdata.glasses[0].i, testdata.glasses[0].j])).to.be.an('error');
+        });
     });
 });
