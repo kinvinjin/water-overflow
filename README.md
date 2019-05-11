@@ -2,7 +2,7 @@
 
 ## Description
 The application is to calculate and illustrate how much liquid is in the j’th glass of the i’th row when K litres are poured into the top
-most glass. The input should be k, i, j in order split by spaces. All the input should be in the acceptable range so that it can get a valid result. Any unexpected result will be disregarded. To exit, type ctrl + c.
+most glass. The input should be k, i, j in order split by spaces. All the input should be in the acceptable range (<= 10000) so that it can get a valid result. Any unexpected result will be disregarded. To exit, type ctrl + c.
 
 ## Design and Implementation
 * **Glassess**

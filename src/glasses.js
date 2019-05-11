@@ -1,4 +1,11 @@
-const { VOLUME } = require('./constants');
+const { VOLUME, MAX } = require('./constants');
+
+const isValid = function(k, i, j) {
+    return !isNaN(k) && !isNaN(i) && !isNaN(j) &&
+            Number.isInteger(k) && Number.isInteger(i) && Number.isInteger(j) &&
+            k >= 0 && i >= 0 && j >= 0 &&
+            k <= MAX && i <= MAX && j <= MAX;
+};
 
 class Glasses {
     constructor(k) {
@@ -58,9 +65,8 @@ class Glasses {
      */
     static build(params) {
         const [k, i, j] = params.map((n) => parseFloat(n));
-        
-        if (params.length !== 3 || isNaN(k) || isNaN(i) || isNaN(j) ||
-                k < 0 || i < 0 || j < 0) {
+
+        if (params.length !== 3 || !isValid(k, i, j)) {
             return new Error();
         }
         

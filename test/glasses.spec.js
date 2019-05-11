@@ -1,4 +1,5 @@
 const expect = require('chai').expect;
+const { MAX } = require('../src/constants');
 const Glasses = require('../src/glasses');
 
 const testdata = {
@@ -36,6 +37,7 @@ const testdata = {
       water: 62.5
     }]
 };
+
 describe('glasses.js', function() {
     describe('getInputNum(k)', function() {
         it('should return the input number of glasses water', function() {
@@ -64,14 +66,42 @@ describe('glasses.js', function() {
         it('should return the amount of water (ml) for the specified glass', function() {
             expect(Glasses.build([testdata.inputL, testdata.glasses[0].i, testdata.glasses[0].j])).to.equal(testdata.glasses[0].water);
         });
+        it('should return the amount of water (ml) for the specified glass', function() {
+            expect(Glasses.build([0, 0, 0])).to.equal(0);
+        });
+        it('should return the amount of water (ml) for the specified glass', function() {
+            this.timeout(10000);
+            expect(Glasses.build([MAX, MAX, MAX])).to.equal(0);
+        });
         it('should return error if params are not 3', function() {
             expect(Glasses.build([testdata.inputL, testdata.glasses[0].i])).to.be.an('error');
         });
         it('should return error if params are invalid', function() {
             expect(Glasses.build([testdata.inputL, testdata.glasses[0].i, 'a'])).to.be.an('error');
         });
-        it('should return error if params are not 3', function() {
+        it('should return error if params are invalid', function() {
             expect(Glasses.build([-1, testdata.glasses[0].i, testdata.glasses[0].j])).to.be.an('error');
+        });
+        it('should return error if params are invalid', function() {
+            expect(Glasses.build([1.1, testdata.glasses[0].i, testdata.glasses[0].j])).to.be.an('error');
+        });
+        it('should return error if params are invalid', function() {
+            expect(Glasses.build([testdata.inputL, testdata.glasses[0].i, -1])).to.be.an('error');
+        });
+        it('should return error if params are invalid', function() {
+            expect(Glasses.build([testdata.inputL, 1.1, testdata.glasses[0].j])).to.be.an('error');
+        });
+        it('should return error if params are invalid', function() {
+            expect(Glasses.build([testdata.inputL, testdata.glasses[0].i, 1.1])).to.be.an('error');
+        });
+        it('should return error if k is greater than max limit', function() {
+            expect(Glasses.build([MAX+1, testdata.glasses[0].i, testdata.glasses[0].j])).to.be.an('error');
+        });
+        it('should return error if i is greater than max limit', function() {
+            expect(Glasses.build([testdata.inputL, MAX+1, testdata.glasses[0].j])).to.be.an('error');
+        });
+        it('should return error if j is greater than max limit', function() {
+            expect(Glasses.build([testdata.inputL, testdata.glasses[0].i, MAX+1])).to.be.an('error');
         });
     });
 });
